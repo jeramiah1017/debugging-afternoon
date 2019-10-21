@@ -16,7 +16,7 @@ class App extends Component {
     this.navigate = this.navigate.bind(this);
   }
   componentDidMount() {
-    axios
+    const axios = require('axios')
       .get("https://practiceapi.devmountain.com/products/")
       .then(response => {
         this.setState({
@@ -54,9 +54,13 @@ class App extends Component {
         <NavBar navigate={this.navigate} />
         <div className="main-container">
           {showCart ? (
-            <ShoppingCart cart={cart} />
+            <ShoppingCart cart={this.state.cart} 
+            removeFromCart={this.removeFromCart}/>
           ) : (
-            <StoreFront products={products} />
+            <StoreFront products={products} 
+            addToCart={this.addToCart}/>
+            
+            
           )}
         </div>
       </div>
